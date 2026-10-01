@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signal Flow Consulting</title>
+<meta name="description" content="Signal Flow Consulting helps growing companies automate their internal support on the tools they already own, so they can scale without hiring more people or buying a new platform.">
+<link rel="canonical" href="https://signalflowconsulting.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Signal Flow Consulting">
+<meta property="og:title" content="Signal Flow Consulting">
+<meta property="og:description" content="Automate your internal support on the tools you already own, so you can scale without hiring more people or buying a new platform.">
+<meta property="og:url" content="https://signalflowconsulting.com/">
+<meta property="og:image" content="https://signalflowconsulting.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Signal Flow Consulting: Automate your internal support on the tools you already own.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#16233F">
+<link rel="preload" href="fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/source-serif-4-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Fonts are self-hosted (SIL Open Font License, see fonts/OFL-LICENSE.txt), so the page makes no third-party requests. */
+@font-face { font-family: "Source Serif 4"; font-style: normal; font-weight: 200 900; font-display: swap; src: url(fonts/source-serif-4-latin-opsz-normal.woff2) format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: normal; font-weight: 200 900; font-display: swap; src: url(fonts/source-sans-3-latin-wght-normal.woff2) format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-style: italic; font-weight: 200 900; font-display: swap; src: url(fonts/source-sans-3-latin-wght-italic.woff2) format("woff2"); }
+
+/* Layout: one long page, left-aligned column; hero pairs the mission with a diagram of how a request flows; navy bands mark sections. Deliberately single-theme (brand is navy on white). */
+:root {
+  color-scheme: light;
+  --navy: #16233F; --navy-2: #2B3B5E; --band: #E9EDF5; --paper: #FFFFFF; --ground: #F7F8FB;
+  --ink: #1C2024; --ink-2: #454C59; --muted: #5E6676; --rule: #D7DCE5;
+  --f-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-body: "Source Sans 3", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 18px; line-height: 1.6; }
+a { color: var(--navy); }
+a:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
+h1, h2, h3 { font-family: var(--f-display); color: var(--navy); text-wrap: balance; margin: 0; }
+h2 { font-size: 30px; line-height: 1.2; }
+h3 { font-size: 20px; line-height: 1.3; }
+p { margin: 0; max-width: 66ch; }
+section[id] { scroll-margin-top: 72px; }
+
+/* Header */
+.top { border-bottom: 1px solid var(--rule); background: var(--paper); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 14px; }
+.wordmark { font-family: var(--f-display); font-weight: 700; color: var(--navy); letter-spacing: .14em; font-size: 17px; text-decoration: none; white-space: nowrap; }
+nav { display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 15.5px; }
+nav a { text-decoration: none; color: var(--ink-2); }
+nav a:hover { color: var(--navy); text-decoration: underline; text-underline-offset: 4px; }
+
+/* Hero */
+.hero { background: var(--ground); border-bottom: 1px solid var(--rule); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-block: 72px 64px; }
+.hero h1 { font-size: 44px; line-height: 1.12; }
+.hero .lede { margin-top: 20px; font-size: 20px; color: var(--ink-2); }
+.cta { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; }
+.btn { display: inline-block; background: var(--navy); color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 17px; padding: 12px 22px; border-radius: 4px; }
+.btn:hover { background: var(--navy-2); }
+.cta .alt { font-size: 16px; color: var(--muted); }
+.flow { min-width: 0; margin: 0; }
+.flow svg { width: 100%; height: auto; display: block; }
+.flow figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; }
+
+/* Sections */
+section.block { padding-block: 72px; border-bottom: 1px solid var(--rule); }
+section.block.tint { background: var(--ground); }
+.head { display: grid; gap: 14px; margin-bottom: 36px; align-content: start; }
+.two > .head { margin: 0; }
+.kicker { font-family: var(--f-display); font-weight: 700; font-size: 12.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--navy); }
+.stack { display: grid; gap: 18px; }
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 48px; }
+.point { display: grid; gap: 8px; align-content: start; border-top: 2px solid var(--navy); padding-top: 16px; }
+.point p { color: var(--ink-2); }
+
+/* Research */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.stat { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
+.stat .n { font-family: var(--f-display); font-weight: 700; color: var(--navy); font-size: 40px; line-height: 1; font-variant-numeric: lining-nums; }
+.stat .what { font-weight: 600; }
+.stat .so { color: var(--ink-2); font-size: 16.5px; }
+.stat .src { font-size: 14px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
+.stat .src a { color: var(--muted); text-underline-offset: 3px; }
+.stat .src a:hover { color: var(--navy); }
+.note { font-size: 15px; color: var(--muted); margin-top: 22px; }
+
+/* Proof */
+.proof { border-left: 3px solid var(--navy); background: var(--band); padding: 26px 28px; display: grid; gap: 14px; }
+.proof .fine { font-size: 15.5px; color: var(--ink-2); font-style: italic; }
+
+/* Steps */
+ol.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: s; }
+ol.steps li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; padding-block: 22px; border-top: 1px solid var(--rule); counter-increment: s; }
+ol.steps li:last-child { border-bottom: 1px solid var(--rule); }
+ol.steps li::before { content: counter(s); font-family: var(--f-display); font-weight: 700; color: var(--navy); font-size: 28px; line-height: 1.1; }
+ol.steps .body { display: grid; gap: 6px; }
+ol.steps p { color: var(--ink-2); }
+
+/* Fit + contact */
+ul.fit { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; max-width: 70ch; }
+ul.fit li { position: relative; padding-left: 20px; color: var(--ink-2); }
+ul.fit li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 7px; height: 7px; background: var(--navy); }
+.contact { background: var(--navy); color: #E9EDF5; }
+.contact .wrap { padding-block: 72px; display: grid; gap: 18px; }
+.contact .kicker { color: #AEB8CC; }
+.contact h2 { color: #FFFFFF; }
+.contact p { color: #D3DAE8; }
+.contact .email { font-family: var(--f-display); font-size: 28px; color: #FFFFFF; user-select: all; word-break: break-word; }
+.contact .email a { color: #FFFFFF; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.contact .email a:focus-visible { outline-color: #FFFFFF; }
+footer { background: var(--navy); border-top: 1px solid #2E3D60; color: #AEB8CC; font-size: 14px; }
+footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: space-between; }
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 48px; gap: 36px; }
+  .hero h1 { font-size: 34px; }
+  .two, .stats { grid-template-columns: minmax(0, 1fr); }
+  section.block { padding-block: 52px; }
+  h2 { font-size: 26px; }
+  body { font-size: 17px; }
+  .top { position: static; }
+  section[id] { scroll-margin-top: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="#top">SIGNAL FLOW CONSULTING</a>
+    <nav aria-label="Sections">
+      <a href="#what">What I do</a>
+      <a href="#different">How it’s different</a>
+      <a href="#why">Why it matters</a>
+      <a href="#process">How it works</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap">
+      <div>
+        <h1>Automate your internal support on the tools you already own.</h1>
+        <p class="lede">I help growing companies handle internal requests automatically inside their existing chat, ticketing and knowledge systems, so they can scale without hiring more people or buying a new platform.</p>
+        <div class="cta">
+          <a class="btn" href="mailto:info@signalflowconsulting.com">Start a conversation</a>
+          <span class="alt">info@signalflowconsulting.com</span>
+        </div>
+      </div>
+      <figure class="flow">
+        <svg viewBox="0 0 470 288" role="img" aria-labelledby="flowTitle">
+          <title id="flowTitle">A request asked in chat is answered from documentation, routed to the right team, or handed to a person.</title>
+          <g font-family="Source Sans 3, Arial, sans-serif">
+            <rect x="1" y="100" width="120" height="100" rx="4" fill="#FFFFFF" stroke="#16233F" stroke-width="1.5"/>
+            <text x="61" y="136" text-anchor="middle" font-size="18" font-weight="600" fill="#16233F">A request</text>
+            <text x="61" y="160" text-anchor="middle" font-size="16" fill="#5E6676">in Slack</text>
+            <text x="61" y="180" text-anchor="middle" font-size="16" fill="#5E6676">or Teams</text>
+            <path d="M121 150 H148" stroke="#16233F" stroke-width="1.5" fill="none"/>
+            <path d="M148 150 C 162 150, 162 50, 176 50" stroke="#16233F" stroke-width="1.5" fill="none"/>
+            <path d="M148 150 H176" stroke="#16233F" stroke-width="1.5" fill="none"/>
+            <path d="M148 150 C 162 150, 162 250, 176 250" stroke="#16233F" stroke-width="1.5" fill="none"/>
+            <circle cx="148" cy="150" r="5" fill="#16233F"/>
+            <rect x="176" y="18" width="292" height="64" rx="4" fill="#E9EDF5" stroke="#16233F" stroke-width="1"/>
+            <text x="192" y="45" font-size="18" font-weight="600" fill="#16233F">Answered</text>
+            <text x="192" y="68" font-size="16" fill="#454C59">from your own documentation</text>
+            <rect x="176" y="118" width="292" height="64" rx="4" fill="#E9EDF5" stroke="#16233F" stroke-width="1"/>
+            <text x="192" y="145" font-size="18" font-weight="600" fill="#16233F">Routed</text>
+            <text x="192" y="168" font-size="16" fill="#454C59">to the right team, already sorted</text>
+            <rect x="176" y="218" width="292" height="64" rx="4" fill="#FFFFFF" stroke="#16233F" stroke-width="1.5"/>
+            <text x="192" y="245" font-size="18" font-weight="600" fill="#16233F">Handed to a person</text>
+            <text x="192" y="268" font-size="16" fill="#454C59">when it needs human judgment</text>
+          </g>
+        </svg>
+        <figcaption>Nothing is dropped, and nothing sits waiting to be noticed.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="problem" aria-labelledby="h-problem">
+    <div class="wrap two">
+      <div class="head">
+        <span class="kicker">The problem</span>
+        <h2 id="h-problem">Internal requests grow with headcount. Most of them never needed a person.</h2>
+      </div>
+      <div class="stack">
+        <p>As a company grows, so does the volume of internal requests: IT tickets, HR questions, access requests, “who do I ask about this?” Most of that load lands on a handful of people, and a surprising share of it never should have reached them. It was misrouted, it was already answered in your knowledge base, or it was a routine request that didn’t need a human at all.</p>
+        <p>Senior people spend time redirecting requests that landed at the wrong desk. Employees wait, sometimes overnight, while requests get passed along by hand until they reach someone who can help. As headcount climbs, the obvious fix is to hire more people to absorb the volume.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint" id="what" aria-labelledby="h-what">
+    <div class="wrap two">
+      <div class="head">
+        <span class="kicker">What I do</span>
+        <h2 id="h-what">A request layer on top of the systems you already run.</h2>
+      </div>
+      <div class="stack">
+        <p>An employee asks a question in plain language where they already work, such as Slack or Teams. No portals, no forms, no “which category is this?” Behind the scenes, the request is answered from your own documentation if the answer exists, routed to the correct team if it doesn’t, and put in front of a person when it needs human judgment.</p>
+        <p>Fewer requests reach the teams that field them, from IT, HR, finance and legal to go-to-market, platform operations, and change and release management. The ones that do arrive already classified, enriched and routed, so your teams can absorb more growth without the company hiring ahead of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="different" aria-labelledby="h-diff">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">How it’s different</span>
+        <h2 id="h-diff">Built to be yours, and built to be trusted.</h2>
+      </div>
+      <div class="two">
+        <div class="point">
+          <h3>You own it</h3>
+          <p>When the engagement ends, the system is yours outright. There’s no new platform to subscribe to, no per-seat licensing and no vendor to be locked into. It runs on your accounts and your data, and it keeps running without me.</p>
+        </div>
+        <div class="point">
+          <h3>It’s built on your stack</h3>
+          <p>It’s built from the tools you already run: your chat tool, helpdesk, knowledge base and directory. Where there’s a genuine gap, I’ll recommend the smallest addition that closes it. If a tool can’t support what you need, I’ll say so.</p>
+        </div>
+        <div class="point">
+          <h3>It’s designed to fail safely</h3>
+          <p>The system automates only what it can do reliably and hands everything else to a person by design. A narrow system people trust beats a broad one that occasionally does the wrong thing confidently. It’s easier to widen a system people rely on than to rebuild one they’ve stopped believing in.</p>
+        </div>
+        <div class="point">
+          <h3>It shows its own work</h3>
+          <p>Where your tools support it, the same layer can surface where your documentation falls short, which teams generate disproportionate load, and where a bottleneck is forming. How much of this is possible depends on your stack, and we establish that during discovery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint" id="why" aria-labelledby="h-why">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Why it matters</span>
+        <h2 id="h-why">AI is only as good as the foundation under it.</h2>
+        <p>Recent industry research points the same way: automation fails when the data and ownership underneath it are unclear. That’s why every engagement starts with the foundation.</p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="n">72%</div>
+          <div class="what">of data and AI decision-makers say that when AI initiatives fall short, the root cause traces back to a poor data foundation.</div>
+          <p class="so">Which is why discovery comes first: I map ownership, policies and documentation before anything is automated.</p>
+          <div class="src"><a href="https://www.collibra.com/company/newsroom/press-releases/new-survey-from-collibra-by-the-harris-poll-finds-72-of-tech-decision-makers-feel-ai-initiatives">Collibra / The Harris Poll</a>, 306 respondents, Sept 2026</div>
+        </div>
+        <div class="stat">
+          <div class="n">50%</div>
+          <div class="what">of organizations trust that the decisions their AI agents make are accurate and relevant. On average, AI can reach only about 45% of enterprise data.</div>
+          <p class="so">Which is why answers are grounded in your own documentation, and anything uncertain goes to a person.</p>
+          <div class="src"><a href="https://www.technologyreview.com/2026/08/12/1141032/scaling-ai-agents-with-trustworthy-data/">MIT Technology Review Insights / Google Cloud</a>, 300 executives, Aug 2026</div>
+        </div>
+        <div class="stat">
+          <div class="n">3 in 4</div>
+          <div class="what">enterprise IT organizations use between 4 and 12 observability tools across their network, cloud and service environments.</div>
+          <p class="so">Tool sprawl is real across IT. I work with the tools you have rather than adding another one to govern.</p>
+          <div class="src"><a href="https://www.enterprisemanagement.com/product/the-reality-of-observability-unification-in-modern-it-operations-2/">Enterprise Management Associates</a>, 356 IT professionals, Sept 2026</div>
+        </div>
+      </div>
+      <p class="note">The third figure concerns observability tooling specifically. It’s included as an example of the broader sprawl trend, not the exact problem I solve.</p>
+    </div>
+  </section>
+
+  <section class="block" id="proof" aria-labelledby="h-proof">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Proven, not theoretical</span>
+        <h2 id="h-proof">Designed and built inside a financial-services company.</h2>
+      </div>
+      <div class="proof">
+        <p>A mostly deterministic, multi-layer routing system spanning more than a dozen departments, grounded in a large knowledge base, scoped to each user’s existing permissions, and validated as least-privilege by the company’s identity and security staff.</p>
+        <p class="fine">Before you commit to a build, I’ll model what it could do against your own request data. I only give numbers I can show you the basis for.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block tint" id="process" aria-labelledby="h-process">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">How working together works</span>
+        <h2 id="h-process">A clear decision point before any build.</h2>
+      </div>
+      <ol class="steps">
+        <li><div class="body"><h3>Discovery</h3><p>A short, paid engagement where I learn your stack, your request patterns and how ownership works across your teams. You come away with a clear picture of where the time is going, whatever you decide next.</p></div></li>
+        <li><div class="body"><h3>Proposal</h3><p>A scoped plan and an ROI projection built from your own numbers. If it isn’t worth building, I’ll tell you plainly. There’s no obligation to continue.</p></div></li>
+        <li><div class="body"><h3>Build and handoff</h3><p>I build the system inside your environment and hand it over documented, so your team owns it. Ongoing support is available if you want it, but it’s never a requirement.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="fit" aria-labelledby="h-fit">
+    <div class="wrap two">
+      <div class="head">
+        <span class="kicker">Who this is for</span>
+        <h2 id="h-fit">High-growth companies that would rather get more from what they already run.</h2>
+      </div>
+      <ul class="fit">
+        <li>You run on internal tickets and requests, with teams like IT, HR, finance, legal, go-to-market, platform operations, or change and release management fielding a steady stream of them.</li>
+        <li>You’ve outgrown a basic helpdesk but don’t want to buy, or be locked into, an enterprise platform like ServiceNow.</li>
+        <li>Your headcount is growing and the request load is growing with it.</li>
+        <li>Your tools come from different vendors and don’t talk to each other the way they should.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block tint" id="about" aria-labelledby="h-about">
+    <div class="wrap two">
+      <div class="head">
+        <span class="kicker">About</span>
+        <h2 id="h-about">Daniel Dreyfack</h2>
+        <p style="color:var(--muted)">Founder, Signal Flow Consulting</p>
+      </div>
+      <div class="stack">
+        <p>I have more than ten years of IT and systems experience, on a path that started in audio and A/V. Most recently I designed and built internal support automation at a financial-services company, spanning more than a dozen departments.</p>
+        <p>Signal Flow Consulting brings that work to growing companies that need it but can’t justify an enterprise platform.</p>
+        <p><a href="https://www.linkedin.com/in/danieldee1">LinkedIn profile</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact" aria-labelledby="h-contact">
+  <div class="wrap">
+    <span class="kicker">Contact</span>
+    <h2 id="h-contact">Let’s establish what your existing systems can do before anyone suggests replacing them.</h2>
+    <div class="email"><a href="mailto:info@signalflowconsulting.com">info@signalflowconsulting.com</a></div>
+    <p>Based in New York.</p>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Signal Flow Consulting</span>
+    <span>No cookies or tracking on this site.</span>
+  </div>
+</footer>
+
+</body>
+</html>
