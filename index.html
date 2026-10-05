@@ -80,9 +80,14 @@ section.block.tint { background: var(--ground); }
 .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 48px; }
 .point { display: grid; gap: 8px; align-content: start; border-top: 2px solid var(--navy); padding-top: 16px; }
 .point p { color: var(--ink-2); }
+.examples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 32px; align-items: start; border-top: 1px solid var(--rule); padding-top: 24px; margin-top: 44px; }
+.examples .kicker { grid-column: 1 / -1; }
+.ex { border-left: 3px solid var(--navy); padding-left: 16px; display: grid; gap: 4px; }
+.ex .ask { font-weight: 600; color: var(--navy); }
+.ex .then { color: var(--ink-2); font-size: 16.5px; }
 
 /* Research */
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
 .stat { background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 22px; display: grid; gap: 10px; align-content: start; }
 .stat .n { font-family: var(--f-display); font-weight: 700; color: var(--navy); font-size: 40px; line-height: 1; font-variant-numeric: lining-nums; }
 .stat .what { font-weight: 600; }
@@ -90,7 +95,6 @@ section.block.tint { background: var(--ground); }
 .stat .src { font-size: 14px; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 10px; }
 .stat .src a { color: var(--muted); text-underline-offset: 3px; }
 .stat .src a:hover { color: var(--navy); }
-.note { font-size: 15px; color: var(--muted); margin-top: 22px; }
 
 /* Proof */
 .proof { border-left: 3px solid var(--navy); background: var(--band); padding: 26px 28px; display: grid; gap: 14px; }
@@ -113,7 +117,7 @@ ul.fit li::before { content: ""; position: absolute; left: 2px; top: 11px; width
 .contact .kicker { color: #AEB8CC; }
 .contact h2 { color: #FFFFFF; }
 .contact p { color: #D3DAE8; }
-.contact .email { font-family: var(--f-display); font-size: 28px; color: #FFFFFF; user-select: all; word-break: break-word; }
+.contact .email { font-family: var(--f-display); font-size: clamp(17px, 5.4vw, 28px); color: #FFFFFF; user-select: all; overflow-wrap: anywhere; }
 .contact .email a { color: #FFFFFF; text-decoration-thickness: 1px; text-underline-offset: 6px; }
 .contact .email a:focus-visible { outline-color: #FFFFFF; }
 footer { background: var(--navy); border-top: 1px solid #2E3D60; color: #AEB8CC; font-size: 14px; }
@@ -122,12 +126,16 @@ footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20p
 @media (max-width: 860px) {
   .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 48px; gap: 36px; }
   .hero h1 { font-size: 34px; }
-  .two, .stats { grid-template-columns: minmax(0, 1fr); }
+  .two, .stats, .examples { grid-template-columns: minmax(0, 1fr); }
+  .examples { margin-top: 32px; }
   section.block { padding-block: 52px; }
   h2 { font-size: 26px; }
   body { font-size: 17px; }
   .top { position: static; }
   section[id] { scroll-margin-top: 16px; }
+  nav { gap: 0 22px; }
+  nav a { padding-block: 10px; }
+  .top .wrap { padding-block: 12px 4px; }
 }
 </style>
 </head>
@@ -182,7 +190,7 @@ footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20p
             <text x="192" y="268" font-size="16" fill="#454C59">when it needs human judgment</text>
           </g>
         </svg>
-        <figcaption>Nothing is dropped, and nothing sits waiting to be noticed.</figcaption>
+        <figcaption>Every request ends up answered or with a named owner.</figcaption>
       </figure>
     </div>
   </section>
@@ -201,7 +209,8 @@ footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20p
   </section>
 
   <section class="block tint" id="what" aria-labelledby="h-what">
-    <div class="wrap two">
+    <div class="wrap">
+    <div class="two">
       <div class="head">
         <span class="kicker">What I do</span>
         <h2 id="h-what">A request layer on top of the systems you already run.</h2>
@@ -209,6 +218,22 @@ footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20p
       <div class="stack">
         <p>An employee asks a question in plain language where they already work, such as Slack or Teams. No portals, no forms, no “which category is this?” Behind the scenes, the request is answered from your own documentation if the answer exists, routed to the correct team if it doesn’t, and put in front of a person when it needs human judgment.</p>
         <p>Fewer requests reach the teams that field them, from IT, HR, finance and legal to go-to-market, platform operations, and change and release management. The ones that do arrive already classified, enriched and routed, so your teams can absorb more growth without the company hiring ahead of it.</p>
+      </div>
+    </div>
+      <div class="examples">
+        <span class="kicker">For example</span>
+        <div class="ex">
+          <p class="ask">“How can I get a physical health insurance card mailed to me?”</p>
+          <p class="then">Answered from the knowledge base. The reply explains that cards come directly from the insurer, and includes the email address of the company’s dedicated account rep.</p>
+        </div>
+        <div class="ex">
+          <p class="ask">“I need an access card for my team onsite in the NYC office next month.”</p>
+          <p class="then">A ticket is created and sent to the workplace operations team.</p>
+        </div>
+        <div class="ex">
+          <p class="ask">“My laptop stopped working.”</p>
+          <p class="then">The system asks the employee to confirm their current address, then creates a ticket for IT. The ticket records the employee’s details, the replacement model your policy assigns them, and an urgency level set to match.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -222,7 +247,7 @@ footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20p
       <div class="two">
         <div class="point">
           <h3>You own it</h3>
-          <p>When the engagement ends, the system is yours outright. There’s no new platform to subscribe to, no per-seat licensing and no vendor to be locked into. It runs on your accounts and your data, and it keeps running without me.</p>
+          <p>When the engagement ends, the system is yours outright. There’s no new platform to subscribe to, no per-seat licensing and no vendor to be locked into. It runs on your accounts and keeps running without me. I work on a laptop you provide, using accounts you own. Your data never leaves your systems, and my access ends when the work is delivered.</p>
         </div>
         <div class="point">
           <h3>It’s built on your stack</h3>
@@ -260,14 +285,7 @@ footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20p
           <p class="so">Which is why answers are grounded in your own documentation, and anything uncertain goes to a person.</p>
           <div class="src"><a href="https://www.technologyreview.com/2026/08/12/1141032/scaling-ai-agents-with-trustworthy-data/">MIT Technology Review Insights / Google Cloud</a>, 300 executives, Aug 2026</div>
         </div>
-        <div class="stat">
-          <div class="n">3 in 4</div>
-          <div class="what">enterprise IT organizations use between 4 and 12 observability tools across their network, cloud and service environments.</div>
-          <p class="so">Tool sprawl is real across IT. I work with the tools you have rather than adding another one to govern.</p>
-          <div class="src"><a href="https://www.enterprisemanagement.com/product/the-reality-of-observability-unification-in-modern-it-operations-2/">Enterprise Management Associates</a>, 356 IT professionals, Sept 2026</div>
-        </div>
       </div>
-      <p class="note">The third figure concerns observability tooling specifically. It’s included as an example of the broader sprawl trend, not the exact problem I solve.</p>
     </div>
   </section>
 
@@ -308,6 +326,7 @@ footer .wrap { padding-block: 20px; display: flex; flex-wrap: wrap; gap: 6px 20p
         <li>You run on internal tickets and requests, with teams like IT, HR, finance, legal, go-to-market, platform operations, or change and release management fielding a steady stream of them.</li>
         <li>You’ve outgrown a basic helpdesk but don’t want to buy, or be locked into, an enterprise platform like ServiceNow.</li>
         <li>Your headcount is growing and the request load is growing with it.</li>
+        <li>Your IT or operations team is one or two people, or one person wearing several hats, and no one has the time to build this.</li>
         <li>Your tools come from different vendors and don’t talk to each other the way they should.</li>
       </ul>
     </div>
