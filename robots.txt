@@ -1,0 +1,14 @@
+# Search engines, link previews and AI search assistants are welcome.
+User-agent: *
+Allow: /
+
+# AI training crawlers: please do not collect this site.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: CCBot
+User-agent: meta-externalagent
+User-agent: Bytespider
+User-agent: Applebot-Extended
+Disallow: /
+
+Sitemap: https://www.signalflowconsulting.com/sitemap.xml
